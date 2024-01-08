@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
+import HomeBackground from "./components/HomeBackground";
 
 const notoSansKr = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -16,7 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={notoSansKr.className}>{children}</body>
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+        integrity={process.env.NEXT_PUBLIC_KAKAO_INTEGRITY_VALUE}
+        crossOrigin="anonymous"
+      />
+      <body className={notoSansKr.className}>
+        <main className="w-screen h-screen flex flex-col justify-center items-center relative overflow-hidden">
+          <HomeBackground />
+          {children}
+        </main>
+      </body>
     </html>
   );
 }

@@ -33,7 +33,7 @@ const HomeBackground = () => {
   const oneColCnt = Math.floor(width / 44);
 
   return (
-    <div className="blur-sm absolute w-screen h-screen -z-10">
+    <div className="opacity-60 blur-sm absolute w-screen h-screen -z-10">
       <div className="grid grid-cols-repeat-fit justify-center w-full items-center">
         {RepeatDiv(oneColCnt)}
       </div>
