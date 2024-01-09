@@ -22,7 +22,6 @@ const Auth = () => {
 
       if (res.ok) {
         router.push("/message");
-        console.log(res);
       }
       if (res && !res.ok) {
         router.push("/");

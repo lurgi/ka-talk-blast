@@ -53,11 +53,14 @@ export async function POST(res: Response) {
       maxAge: refresh_token_expires_in,
       path: "/",
     });
+
     return NextResponse.json(
       { ok: true },
       {
         status: 200,
-        headers: { "Set-Cookie": `${ACCESS_SERIALRIZE}; ${REFRESH_SERIALIZE}` },
+        headers: {
+          "Set-Cookie": `${ACCESS_SERIALRIZE}, ${REFRESH_SERIALIZE}`,
+        },
       }
     );
   } catch (error) {
