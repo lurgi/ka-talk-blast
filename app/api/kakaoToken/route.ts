@@ -53,7 +53,6 @@ export async function POST(res: Response) {
       maxAge: refresh_token_expires_in,
       path: "/",
     });
-
     return NextResponse.json(
       { ok: true },
       {
@@ -62,6 +61,9 @@ export async function POST(res: Response) {
       }
     );
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something In Kakao Token Server is wrong" },
+      { status: 500 }
+    );
   }
 }

@@ -1,8 +1,11 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
-import "./globals.css";
 import Script from "next/script";
-import HomeBackground from "./components/HomeBackground";
+
+import { Toaster } from "react-hot-toast";
+
+import HomeBackground from "@/components/HomeBackground";
 
 const notoSansKr = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -25,6 +28,7 @@ export default function RootLayout({
       />
       <body className={notoSansKr.className}>
         <main className="w-screen h-screen flex flex-col justify-center items-center relative overflow-hidden">
+          <Toaster />
           <HomeBackground />
           {children}
         </main>

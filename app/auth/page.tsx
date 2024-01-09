@@ -2,6 +2,8 @@
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+
+import toast from "react-hot-toast";
 import { RiLoader2Line } from "react-icons/ri";
 
 const Auth = () => {
@@ -20,11 +22,11 @@ const Auth = () => {
 
       if (res.ok) {
         router.push("/message");
+        console.log(res);
       }
       if (res && !res.ok) {
         router.push("/");
-        // TODO ERROR HANDLING
-        console.log(res);
+        toast.error(res.error);
       }
     };
 
