@@ -1,15 +1,20 @@
 "use client";
 import toast from "react-hot-toast";
 
+interface SendResponse {
+  ok: boolean;
+  error?: string;
+}
+
 const Message = () => {
   const message = {
     object_type: "text",
     text: "테스트용 메세지 입니다.",
     link: {
-      web_url: "naver.com",
-      mobile_web_url: "m.naver.com",
-      android_execution_params: "m.naver.com",
-      ios_execution_params: "m.naver.com",
+      web_url: "https://www.naver.com/",
+      mobile_web_url: "https://www.m.naver.com/",
+      android_execution_params: "https://www.m.naver.com/",
+      ios_execution_params: "https://www.m.naver.com/",
     },
   };
 
@@ -17,7 +22,16 @@ const Message = () => {
     fetch("/api/message/send-me", {
       method: "POST",
       body: JSON.stringify(message),
-    }).then((r) => console.log(r));
+    })
+      .then((res) => res.json())
+      .then((json: SendResponse) => {
+        if (json.ok) {
+          toast.success("나에게 메세지를 보냈습니다!");
+        }
+        if (!json.ok && json.error) {
+          toast.error(json.error);
+        }
+      });
   };
 
   return (

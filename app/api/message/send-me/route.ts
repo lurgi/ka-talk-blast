@@ -19,10 +19,15 @@ export async function POST(res: Response) {
       }
     );
     const json = await res.json();
-    console.log(json);
-  } catch (e) {
-    console.log(e);
-  }
+    if (json.result_code === 0) {
+      return NextResponse.json({ ok: true }, { status: 200 });
+    }
 
-  return NextResponse.json({ ok: true }, { status: 200 });
+    return NextResponse.json({ ok: false, error: json.msg }, { status: 401 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { ok: false, error: error.message },
+      { status: 500 }
+    );
+  }
 }
