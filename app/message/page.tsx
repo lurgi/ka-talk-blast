@@ -128,7 +128,9 @@ const Message = () => {
         </div>
         <div className="w-full flex justify-between">
           <SendBtn onClick={handleSubmit(sendMe)}>나에게 보내기</SendBtn>
-          <SendBtn onClick={handleSubmit(sendFriends)}>친구에게 보내기</SendBtn>
+          <SendBtn onClick={handleSubmit(sendFriends)} disabled={true}>
+            친구에게 보내기
+          </SendBtn>
         </div>
       </form>
       {isModalOpen ? <FriendsModal /> : null}
