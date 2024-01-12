@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import MessagePreview from "@/components/MessagePreview";
 import SendBtn from "@/components/SendBtn";
 import { ErrorMessage } from "@hookform/error-message";
+import useFriendModalStore from "@/hooks/friendModalStore";
+import FriendsModal from "@/components/FriendsModal";
 
 interface MessageForm {
   text: string;
@@ -49,9 +51,13 @@ const Message = () => {
     formState: { errors },
   } = useForm<MessageForm>();
   const messageForm = watch();
+  const { isModalOpen, setModalOpen, setModalClose } = useFriendModalStore(
+    (state) => state
+  );
 
   const sendMe = (form: MessageForm) => {
     const message = getMessage(form);
+
     fetch("/api/message/send-me", {
       method: "POST",
       body: JSON.stringify(message),
@@ -67,7 +73,9 @@ const Message = () => {
       });
   };
 
-  const sendFriends = () => {};
+  const sendFriends = () => {
+    setModalOpen();
+  };
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 backdrop-blur-lg p-10 rounded-md">
@@ -123,6 +131,7 @@ const Message = () => {
           <SendBtn onClick={handleSubmit(sendFriends)}>친구에게 보내기</SendBtn>
         </div>
       </form>
+      {isModalOpen ? <FriendsModal /> : null}
     </div>
   );
 };
