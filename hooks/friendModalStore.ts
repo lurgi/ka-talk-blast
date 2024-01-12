@@ -7,7 +7,7 @@ interface FriendModalStore {
 }
 
 const useFriendModalStore = create<FriendModalStore>((set) => ({
-  isModalOpen: false,
+  isModalOpen: true,
   setModalOpen: () => set({ isModalOpen: true }),
   setModalClose: () => set({ isModalOpen: false }),
 }));

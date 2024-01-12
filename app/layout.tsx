@@ -26,6 +26,7 @@ export default function RootLayout({
         integrity={process.env.NEXT_PUBLIC_KAKAO_INTEGRITY_VALUE}
         crossOrigin="anonymous"
       />
+
       <body className={notoSansKr.className}>
         <main className="w-screen h-screen flex flex-col justify-center items-center relative overflow-hidden">
           <Toaster />
