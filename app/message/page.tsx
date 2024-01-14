@@ -51,9 +51,7 @@ const Message = () => {
     formState: { errors },
   } = useForm<MessageForm>();
   const messageForm = watch();
-  const { isModalOpen, setModalOpen, setModalClose } = useFriendModalStore(
-    (state) => state
-  );
+  const { isModalOpen, setModalOpen } = useFriendModalStore((state) => state);
 
   const sendMe = (form: MessageForm) => {
     const message = getMessage(form);

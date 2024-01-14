@@ -2,12 +2,17 @@
 
 const LoginBtn = () => {
   const handleClick = () => {
-    window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
-    window.Kakao.Auth.authorize({
-      redirectUri: "https://ka-talk-blast-jfzixfec7-lurgi.vercel.app/auth",
-      scope: "talk_message,friends",
-    });
+    if (window.Kakao) {
+      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
+      window.Kakao.Auth.authorize({
+        redirectUri: `${
+          process.env.VERCEL_URL || "http://localhost:3000"
+        }/auth`,
+        scope: "talk_message,friends",
+      });
+    }
   };
+
   return (
     <button
       onClick={handleClick}
