@@ -11,7 +11,6 @@ const getFriends = async () => {
 const FriendsModal = () => {
   const { setModalClose } = useFriendModalStore((state) => state);
   const { data } = useSWR(["friends"], getFriends);
-  console.log(data);
 
   return (
     <div className="absolute w-screen h-screen backdrop-blur-3xl bg-gray-400 flex flex-col items-center justify-center transition bg-opacity-30">
