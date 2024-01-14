@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const RoketDiv = () => (
   <div className="w-5 h-5 m-3 -translate-y-[2.7px]">🚀</div>
@@ -24,18 +24,20 @@ const RepeatDiv = (cnt: number) =>
   });
 
 const HomeBackground = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState<number>(600);
 
-  window.onresize = () => {
+  useEffect(() => {
     setWidth(window.innerWidth);
-  };
 
-  const oneColCnt = Math.floor(width / 44);
+    window.onresize = () => {
+      setWidth(window.innerWidth);
+    };
+  }, []);
 
   return (
     <div className="opacity-60 blur-sm absolute w-screen h-screen -z-10">
       <div className="grid grid-cols-repeat-fit justify-center w-full items-center">
-        {RepeatDiv(oneColCnt)}
+        {width ? RepeatDiv(Math.floor(width / 44)) : null}
       </div>
     </div>
   );
