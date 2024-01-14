@@ -13,8 +13,8 @@ interface TokenRes {
 
 const BASE_URL = "https://kauth.kakao.com/oauth/token";
 
-export async function POST(res: Response) {
-  const { code } = await res.json();
+export async function POST(req: Request) {
+  const { code } = await req.json();
   if (!code) return new NextResponse("Unauthorized", { status: 401 });
 
   const grant_type = "authorization_code";

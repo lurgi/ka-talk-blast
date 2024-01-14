@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-export async function POST(res: Response) {
-  const text = await res.json();
+export async function POST(req: Request) {
+  const text = await req.json();
   const coocieStore = cookies();
 
   const access_token = coocieStore.get("kakaoAccessToken")?.value;

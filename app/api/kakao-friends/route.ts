@@ -14,6 +14,5 @@ export async function GET() {
     })
   ).json();
 
-  console.log(res);
   return NextResponse.json({ ok: true });
 }
