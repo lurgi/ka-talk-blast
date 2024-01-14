@@ -6,7 +6,7 @@ const LoginBtn = () => {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY);
       window.Kakao.Auth.authorize({
         redirectUri: `${
-          process.env.VERCEL_URL || "http://localhost:3000"
+          process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
         }/auth`,
         scope: "talk_message,friends",
       });

@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   const grant_type = "authorization_code";
   const client_id = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY!;
   const redirect_uri = `${
-    process.env.VERCEL_URL || "http://localhost:3000"
+    process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
   }/auth`;
   const client_secret = process.env.NEXT_PUBLIC_KAKAO_CLIENT_SECRET!;
 
@@ -40,8 +40,6 @@ export async function POST(req: Request) {
         }
       )
     ).json();
-
-    console.log(access_token, refresh_token);
 
     const ACCESS_SERIALRIZE = serialize("kakaoAccessToken", access_token, {
       httpOnly: true,
